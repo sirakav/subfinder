@@ -18,10 +18,10 @@ import (
 )
 
 const (
-	dialTimeout           = 10 * time.Second
-	tlsHandshakeTimeout   = 10 * time.Second
-	responseHeaderTimeout = 10 * time.Second
-	expectContinueTimeout = 3 * time.Second
+	dialTimeout           = 30 * time.Second
+	tlsHandshakeTimeout   = 30 * time.Second
+	responseHeaderTimeout = 30 * time.Second
+	expectContinueTimeout = 30 * time.Second
 )
 
 // NewSession creates a new session object for a domain
