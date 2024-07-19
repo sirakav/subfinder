@@ -11,7 +11,7 @@ import (
 
 	jsoniter "github.com/json-iterator/go"
 
-	"github.com/projectdiscovery/subfinder/v2/pkg/subscraping"
+	"github.com/sirakav/subfinder/v2/pkg/subscraping"
 )
 
 type searchResponseType struct {

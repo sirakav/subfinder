@@ -17,17 +17,31 @@ import (
 	"github.com/projectdiscovery/gologger"
 )
 
+const (
+	dialTimeout           = 10 * time.Second
+	tlsHandshakeTimeout   = 10 * time.Second
+	responseHeaderTimeout = 10 * time.Second
+	expectContinueTimeout = 1 * time.Second
+)
+
 // NewSession creates a new session object for a domain
-func NewSession(domain string, proxy string, multiRateLimiter *ratelimit.MultiLimiter, timeout int) (*Session, error) {
+func NewSession(domain, proxy string, multiRateLimiter *ratelimit.MultiLimiter, timeout int) (*Session, error) {
+	dialer := &net.Dialer{
+		Timeout:   dialTimeout,
+		KeepAlive: 30 * time.Second,
+	}
+
 	Transport := &http.Transport{
-		MaxIdleConns:        100,
-		MaxIdleConnsPerHost: 100,
+		DialContext:           dialer.DialContext,
+		MaxIdleConns:          100,
+		MaxIdleConnsPerHost:   100,
+		IdleConnTimeout:       90 * time.Second,
+		TLSHandshakeTimeout:   tlsHandshakeTimeout,
+		ResponseHeaderTimeout: responseHeaderTimeout,
+		ExpectContinueTimeout: expectContinueTimeout,
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
 		},
-		Dial: (&net.Dialer{
-			Timeout: time.Duration(timeout) * time.Second,
-		}).Dial,
 	}
 
 	// Add proxy

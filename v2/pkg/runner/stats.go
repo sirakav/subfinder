@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/subfinder/v2/pkg/subscraping"
+	"github.com/sirakav/subfinder/v2/pkg/subscraping"
 	"golang.org/x/exp/maps"
 )
 

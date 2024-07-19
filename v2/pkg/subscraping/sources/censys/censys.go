@@ -8,8 +8,8 @@ import (
 
 	jsoniter "github.com/json-iterator/go"
 
-	"github.com/projectdiscovery/subfinder/v2/pkg/subscraping"
 	urlutil "github.com/projectdiscovery/utils/url"
+	"github.com/sirakav/subfinder/v2/pkg/subscraping"
 )
 
 const (
