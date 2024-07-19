@@ -94,6 +94,9 @@ func (s *Session) SimplePost(ctx context.Context, postURL, contentType string, b
 
 // HTTPRequest makes any HTTP request to a URL with extended parameters
 func (s *Session) HTTPRequest(ctx context.Context, method, requestURL, cookies string, headers map[string]string, body io.Reader, basicAuth BasicAuth) (*http.Response, error) {
+	ctx, cancel := context.WithTimeout(ctx, s.Client.Timeout)
+	defer cancel()
+
 	req, err := http.NewRequestWithContext(ctx, method, requestURL, body)
 	if err != nil {
 		return nil, err
