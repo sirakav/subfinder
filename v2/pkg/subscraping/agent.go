@@ -21,7 +21,7 @@ const (
 	dialTimeout           = 10 * time.Second
 	tlsHandshakeTimeout   = 10 * time.Second
 	responseHeaderTimeout = 10 * time.Second
-	expectContinueTimeout = 1 * time.Second
+	expectContinueTimeout = 3 * time.Second
 )
 
 // NewSession creates a new session object for a domain
